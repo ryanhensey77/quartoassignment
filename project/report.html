@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ryan Hensey">
+<meta name="dcterms.date" content="2024-04-07">
+
+<title>Connecting the Dots</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="report_files/libs/quarto-html/quarto.js"></script>
+<script src="report_files/libs/quarto-html/popper.min.js"></script>
+<script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="report_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="report_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="report_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="report_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="report_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="report_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="report_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="report_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Connecting the Dots</h1>
+<p class="subtitle lead">Child Deprivation, Life Expectancy, and GDP Trends</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ryan Hensey </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 7, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>##Introduction The Gross Domestic Product (GDP) of a country serves as a fundamental measure of its economic health, reflecting the overall value of goods and services produced within its borders. However, behind the numbers lies a profound influence on the well-being of its populace, particularly its most vulnerable members: children. The level of GDP directly affects the extent of deprivation experienced by children, encompassing factors such as inadequate nutrition, limited access to education, substandard living conditions, and a lack of healthcare. These forms of deprivation, when endured simultaneously, can exert a profound impact on life expectancy at birth.</p>
+<p>##Global Overview</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-50eb408dc1d12863338f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-50eb408dc1d12863338f">{"x":{"data":[{"x":[2011,2012,2012,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2017,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2016,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2012,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2012,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2013,2013,2014,2015,2016,2017,2018,null,2011,2011,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2016,2016,2017,2018,null,2011,2012,2012,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2011,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2013,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2015,2015,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2015,2015,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2011,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2012,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2017,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2017,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2016,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2014,2014,2015,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2015,2016,2016,2016,2017,2018,null,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,null,2011,2012,2013,2014,2015,2015,2015,2016,2017,2018],"y":[74.123000000000005,74.201999999999998,74.201999999999998,74.201999999999998,74.614999999999995,75.109999999999999,75.622,75.731999999999999,75.742999999999995,76.066000000000003,null,58.462000000000003,58.716000000000001,58.965000000000003,59.125,59.377000000000002,59.539000000000001,59.856000000000002,59.856000000000002,59.856000000000002,60.140000000000001,null,57.125,57.619,57.823,58.359000000000002,58.844999999999999,59.326000000000001,59.536000000000001,60.046999999999997,null,57.768999999999998,58.493000000000002,59.234999999999999,59.868000000000002,60.216999999999999,60.792999999999999,60.792999999999999,60.792999999999999,61.552999999999997,61.688000000000002,null,57.133000000000003,57.792000000000002,58.475999999999999,58.935000000000002,59.658000000000001,60.232999999999997,60.810000000000002,61.18,61.18,61.18,null,74.257000000000005,74.483999999999995,75.058999999999997,75.239999999999995,74.620000000000005,75.742000000000004,76.593000000000004,75.733000000000004,null,49.948,50.686,50.902000000000001,50.566000000000003,52.792999999999999,53.460000000000001,53.720999999999997,54.369,null,50.009,50.539999999999999,50.780999999999999,51.201999999999998,51.201999999999998,51.201999999999998,51.588999999999999,52.082999999999998,52.308,52.825000000000003,null,61.503,61.834000000000003,61.834000000000003,61.834000000000003,62.223999999999997,62.515999999999998,62.896000000000001,63.237000000000002,63.625,63.911999999999999,null,61.991999999999997,62.317,62.317,62.317,62.695,62.950000000000003,63.232999999999997,63.576999999999998,63.759999999999998,64.052999999999997,null,57.069000000000003,57.247999999999998,57.762,57.762,57.762,58.295999999999999,58.490000000000002,59.066000000000003,59.411000000000001,59.942,null,55.520000000000003,55.520000000000003,55.520000000000003,56.158000000000001,56.747999999999998,57.207999999999998,57.762,58.060000000000002,58.479999999999997,58.848999999999997,null,60.433,60.847999999999999,61.220999999999997,61.640999999999998,61.957000000000001,62.191000000000003,62.796999999999997,63.037999999999997,null,69.879999999999995,70.084999999999994,70.052000000000007,70.415000000000006,70.415000000000006,70.415000000000006,70.483000000000004,70.843999999999994,71.302000000000007,71.367000000000004,null,58.411999999999999,58.865000000000002,59.223999999999997,59.594999999999999,60.103000000000002,60.478999999999999,60.820999999999998,61.191000000000003,null,64.402000000000001,64.837999999999994,65.066999999999993,65.599999999999994,66.033000000000001,66.289000000000001,66.576999999999998,67.066999999999993,null,60.720999999999997,61.542999999999999,62.372999999999998,62.905000000000001,63.649000000000001,64.391999999999996,64.391999999999996,64.391999999999996,64.837999999999994,65.412000000000006,null,64.045000000000002,64.587000000000003,64.587000000000003,64.587000000000003,64.775999999999996,64.974000000000004,65.459999999999994,65.802000000000007,66.188999999999993,66.305999999999997,null,61.526000000000003,62.095999999999997,62.113999999999997,62.268999999999998,62.494,63.012999999999998,62.994999999999997,63.039999999999999,63.039999999999999,63.039999999999999,null,61.652000000000001,62.081000000000003,62.420000000000002,63.045000000000002,63.045000000000002,63.045000000000002,63.174999999999997,63.890000000000001,64.013000000000005,64.122,null,57.018999999999998,57.405999999999999,57.790999999999997,57.886000000000003,58.134,58.762999999999998,59.109000000000002,59.348999999999997,59.348999999999997,59.348999999999997,null,56.966999999999999,57.689999999999998,58.231999999999999,58.609999999999999,58.609999999999999,58.609999999999999,59.128,59.673999999999999,60.066000000000003,60.502000000000002,null,55.520000000000003,55.520000000000003,55.520000000000003,56.158000000000001,56.747999999999998,57.207999999999998,57.762,58.060000000000002,58.479999999999997,58.848999999999997,null,61.045999999999999,61.115000000000002,61.389000000000003,61.816000000000003,61.816000000000003,61.816000000000003,61.892000000000003,62.162999999999997,62.481000000000002,62.676000000000002,null,46.692,47.835000000000001,49.002000000000002,50.033000000000001,50.033000000000001,50.033000000000001,51.100999999999999,52.264000000000003,53.064,53.732999999999997,null,59.619999999999997,59.912999999999997,59.942999999999998,59.942999999999998,59.942999999999998,59.121000000000002,59.148000000000003,60.415999999999997,60.552999999999997,60.853000000000002,null,70.070999999999998,72.247,72.340000000000003,71.510999999999996,71.697999999999993,71.756,72.481999999999999,72.793999999999997,null,70.070999999999998,72.247,72.340000000000003,71.510999999999996,71.697999999999993,71.756,72.481999999999999,72.793999999999997,null,63.494,63.543999999999997,63.962000000000003,64.254999999999995,64.338999999999999,64.997,65.093999999999994,65.269999999999996,65.269999999999996,65.269999999999996,null,57.454999999999998,58.679000000000002,59.728999999999999,60.899000000000001,61.378,61.378,61.378,62.209000000000003,62.976999999999997,63.276000000000003,null,56.755000000000003,57.079000000000001,57.356999999999999,57.899999999999999,58.363,58.731000000000002,59.131999999999998,59.393000000000001,59.393000000000001,59.393000000000001,null,63.345999999999997,63.578000000000003,63.911000000000001,64.155000000000001,64.484999999999999,64.484999999999999,64.484999999999999,64.768000000000001,65.082999999999998,65.310000000000002,null,73.266829270000002,73.863414629999994,74.017073170000003,74.194390240000004,74.353170730000002,74.394878050000003,74.514634150000006,74.416341459999998,null,71.269000000000005,71.679000000000002,72.122,72.537999999999997,72.920000000000002,73.284000000000006,73.659999999999997,73.986000000000004,null,54.869,54.869,54.869,55.639000000000003,56.491999999999997,57.274000000000001,58.151000000000003,59.037999999999997,59.771000000000001,60.526000000000003,null,58.994,59.649999999999999,59.649999999999999,59.649999999999999,60.238999999999997,60.786000000000001,61.082999999999998,61.628999999999998,62.159999999999997,62.454000000000001,null,51.356999999999999,51.497,51.707000000000001,51.790999999999997,51.841000000000001,52.042999999999999,52.305,52.554000000000002,52.554000000000002,52.554000000000002,null,63.261000000000003,64.009,64.426000000000002,64.939999999999998,64.939999999999998,64.939999999999998,65.298000000000002,65.736999999999995,65.941000000000003,66.251000000000005,null,64.902000000000001,65.745999999999995,66.328000000000003,66.844999999999999,66.844999999999999,66.844999999999999,67.248999999999995,67.492000000000004,68.266999999999996,68.355000000000004,null,65.262,65.456999999999994,66.072000000000003,66.451999999999998,66.879000000000005,67.497,67.75,67.75,67.75,68.096999999999994,null,72.724390240000005,74.275609759999995,73.119512200000003,73.229268289999993,74.295121949999995,74.309756100000001,74.299999999999997,72.841463410000003,null,54.619999999999997,55.451000000000001,56.313000000000002,56.393000000000001,57.189,58.404000000000003,58.652000000000001,58.652000000000001,58.652000000000001,59.795999999999999,null,51.304000000000002,53.161000000000001,53.843000000000004,54.277000000000001,54.856999999999999,55.043999999999997,55.654000000000003,56.375,null,60.651000000000003,61.845999999999997,62.533000000000001,63.380000000000003,63.950000000000003,64.747,64.747,64.747,65.402000000000001,65.674000000000007,null,54.939999999999998,55.865000000000002,55.750999999999998,54.972999999999999,55.566000000000003,55.543999999999997,55.308999999999997,55.950000000000003,null,63.246000000000002,63.792000000000002,63.677999999999997,64.269000000000005,64.659000000000006,64.780000000000001,65.444999999999993,65.680999999999997,null,48.195,49.835000000000001,51.485999999999997,53.049999999999997,53.049999999999997,53.049999999999997,55.018999999999998,56.658999999999999,57.895000000000003,59.411000000000001,null,75.459999999999994,75.549999999999997,75.650000000000006,75.650000000000006,75.691999999999993,75.786000000000001,75.844999999999999,75.950000000000003,75.950000000000003,75.950000000000003,null,57.965000000000003,58.817,59.762999999999998,60.408000000000001,61.085999999999999,61.648000000000003,61.648000000000003,61.648000000000003,62.115000000000002,62.713999999999999,null,57.771000000000001,58.866999999999997,59.878,60.698999999999998,61.207999999999998,61.793999999999997,62.119999999999997,62.341999999999999,62.341999999999999,62.341999999999999,null,53.347000000000001,55.625999999999998,57.457999999999998,58.845999999999997,59.591000000000001,59.591000000000001,59.591000000000001,60.305999999999997,60.709000000000003,61.414000000000001],"text":["year: 2011<br />LifeExp: 74.12300<br />country: Algeria<br />Continent: Africa","year: 2012<br />LifeExp: 74.20200<br />country: Algeria<br />Continent: Africa","year: 2012<br />LifeExp: 74.20200<br />country: Algeria<br />Continent: Africa","year: 2012<br />LifeExp: 74.20200<br />country: Algeria<br />Continent: Africa","year: 2013<br />LifeExp: 74.61500<br />country: Algeria<br />Continent: Africa","year: 2014<br />LifeExp: 75.11000<br />country: Algeria<br />Continent: Africa","year: 2015<br />LifeExp: 75.62200<br />country: Algeria<br />Continent: Africa","year: 2016<br />LifeExp: 75.73200<br />country: Algeria<br />Continent: Africa","year: 2017<br />LifeExp: 75.74300<br />country: Algeria<br />Continent: Africa","year: 2018<br />LifeExp: 76.06600<br />country: Algeria<br />Continent: Africa",null,"year: 2011<br />LifeExp: 58.46200<br />country: Benin<br />Continent: Africa","year: 2012<br />LifeExp: 58.71600<br />country: Benin<br />Continent: Africa","year: 2013<br />LifeExp: 58.96500<br />country: Benin<br />Continent: Africa","year: 2014<br />LifeExp: 59.12500<br />country: Benin<br />Continent: Africa","year: 2015<br />LifeExp: 59.37700<br />country: Benin<br />Continent: Africa","year: 2016<br />LifeExp: 59.53900<br />country: Benin<br />Continent: Africa","year: 2017<br />LifeExp: 59.85600<br />country: Benin<br />Continent: Africa","year: 2017<br />LifeExp: 59.85600<br />country: Benin<br />Continent: Africa","year: 2017<br />LifeExp: 59.85600<br />country: Benin<br />Continent: Africa","year: 2018<br />LifeExp: 60.14000<br />country: Benin<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.12500<br />country: Burkina Faso<br />Continent: Africa","year: 2012<br />LifeExp: 57.61900<br />country: Burkina Faso<br />Continent: Africa","year: 2013<br />LifeExp: 57.82300<br />country: Burkina Faso<br />Continent: Africa","year: 2014<br />LifeExp: 58.35900<br />country: Burkina Faso<br />Continent: Africa","year: 2015<br />LifeExp: 58.84500<br />country: Burkina Faso<br />Continent: Africa","year: 2016<br />LifeExp: 59.32600<br />country: Burkina Faso<br />Continent: Africa","year: 2017<br />LifeExp: 59.53600<br />country: Burkina Faso<br />Continent: Africa","year: 2018<br />LifeExp: 60.04700<br />country: Burkina Faso<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.76900<br />country: Burundi<br />Continent: Africa","year: 2012<br />LifeExp: 58.49300<br />country: Burundi<br />Continent: Africa","year: 2013<br />LifeExp: 59.23500<br />country: Burundi<br />Continent: Africa","year: 2014<br />LifeExp: 59.86800<br />country: Burundi<br />Continent: Africa","year: 2015<br />LifeExp: 60.21700<br />country: Burundi<br />Continent: Africa","year: 2016<br />LifeExp: 60.79300<br />country: Burundi<br />Continent: Africa","year: 2016<br />LifeExp: 60.79300<br />country: Burundi<br />Continent: Africa","year: 2016<br />LifeExp: 60.79300<br />country: Burundi<br />Continent: Africa","year: 2017<br />LifeExp: 61.55300<br />country: Burundi<br />Continent: Africa","year: 2018<br />LifeExp: 61.68800<br />country: Burundi<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.13300<br />country: Cameroon<br />Continent: Africa","year: 2012<br />LifeExp: 57.79200<br />country: Cameroon<br />Continent: Africa","year: 2013<br />LifeExp: 58.47600<br />country: Cameroon<br />Continent: Africa","year: 2014<br />LifeExp: 58.93500<br />country: Cameroon<br />Continent: Africa","year: 2015<br />LifeExp: 59.65800<br />country: Cameroon<br />Continent: Africa","year: 2016<br />LifeExp: 60.23300<br />country: Cameroon<br />Continent: Africa","year: 2017<br />LifeExp: 60.81000<br />country: Cameroon<br />Continent: Africa","year: 2018<br />LifeExp: 61.18000<br />country: Cameroon<br />Continent: Africa","year: 2018<br />LifeExp: 61.18000<br />country: Cameroon<br />Continent: Africa","year: 2018<br />LifeExp: 61.18000<br />country: Cameroon<br />Continent: Africa",null,"year: 2011<br />LifeExp: 74.25700<br />country: Cape Verde<br />Continent: Africa","year: 2012<br />LifeExp: 74.48400<br />country: Cape Verde<br />Continent: Africa","year: 2013<br />LifeExp: 75.05900<br />country: Cape Verde<br />Continent: Africa","year: 2014<br />LifeExp: 75.24000<br />country: Cape Verde<br />Continent: Africa","year: 2015<br />LifeExp: 74.62000<br />country: Cape Verde<br />Continent: Africa","year: 2016<br />LifeExp: 75.74200<br />country: Cape Verde<br />Continent: Africa","year: 2017<br />LifeExp: 76.59300<br />country: Cape Verde<br />Continent: Africa","year: 2018<br />LifeExp: 75.73300<br />country: Cape Verde<br />Continent: Africa",null,"year: 2011<br />LifeExp: 49.94800<br />country: Central African Republic<br />Continent: Africa","year: 2012<br />LifeExp: 50.68600<br />country: Central African Republic<br />Continent: Africa","year: 2013<br />LifeExp: 50.90200<br />country: Central African Republic<br />Continent: Africa","year: 2014<br />LifeExp: 50.56600<br />country: Central African Republic<br />Continent: Africa","year: 2015<br />LifeExp: 52.79300<br />country: Central African Republic<br />Continent: Africa","year: 2016<br />LifeExp: 53.46000<br />country: Central African Republic<br />Continent: Africa","year: 2017<br />LifeExp: 53.72100<br />country: Central African Republic<br />Continent: Africa","year: 2018<br />LifeExp: 54.36900<br />country: Central African Republic<br />Continent: Africa",null,"year: 2011<br />LifeExp: 50.00900<br />country: Chad<br />Continent: Africa","year: 2012<br />LifeExp: 50.54000<br />country: Chad<br />Continent: Africa","year: 2013<br />LifeExp: 50.78100<br />country: Chad<br />Continent: Africa","year: 2014<br />LifeExp: 51.20200<br />country: Chad<br />Continent: Africa","year: 2014<br />LifeExp: 51.20200<br />country: Chad<br />Continent: Africa","year: 2014<br />LifeExp: 51.20200<br />country: Chad<br />Continent: Africa","year: 2015<br />LifeExp: 51.58900<br />country: Chad<br />Continent: Africa","year: 2016<br />LifeExp: 52.08300<br />country: Chad<br />Continent: Africa","year: 2017<br />LifeExp: 52.30800<br />country: Chad<br />Continent: Africa","year: 2018<br />LifeExp: 52.82500<br />country: Chad<br />Continent: Africa",null,"year: 2011<br />LifeExp: 61.50300<br />country: Comoros<br />Continent: Africa","year: 2012<br />LifeExp: 61.83400<br />country: Comoros<br />Continent: Africa","year: 2012<br />LifeExp: 61.83400<br />country: Comoros<br />Continent: Africa","year: 2012<br />LifeExp: 61.83400<br />country: Comoros<br />Continent: Africa","year: 2013<br />LifeExp: 62.22400<br />country: Comoros<br />Continent: Africa","year: 2014<br />LifeExp: 62.51600<br />country: Comoros<br />Continent: Africa","year: 2015<br />LifeExp: 62.89600<br />country: Comoros<br />Continent: Africa","year: 2016<br />LifeExp: 63.23700<br />country: Comoros<br />Continent: Africa","year: 2017<br />LifeExp: 63.62500<br />country: Comoros<br />Continent: Africa","year: 2018<br />LifeExp: 63.91200<br />country: Comoros<br />Continent: Africa",null,"year: 2011<br />LifeExp: 61.99200<br />country: Congo<br />Continent: Africa","year: 2012<br />LifeExp: 62.31700<br />country: Congo<br />Continent: Africa","year: 2012<br />LifeExp: 62.31700<br />country: Congo<br />Continent: Africa","year: 2012<br />LifeExp: 62.31700<br />country: Congo<br />Continent: Africa","year: 2013<br />LifeExp: 62.69500<br />country: Congo<br />Continent: Africa","year: 2014<br />LifeExp: 62.95000<br />country: Congo<br />Continent: Africa","year: 2015<br />LifeExp: 63.23300<br />country: Congo<br />Continent: Africa","year: 2016<br />LifeExp: 63.57700<br />country: Congo<br />Continent: Africa","year: 2017<br />LifeExp: 63.76000<br />country: Congo<br />Continent: Africa","year: 2018<br />LifeExp: 64.05300<br />country: Congo<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.06900<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2012<br />LifeExp: 57.24800<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2013<br />LifeExp: 57.76200<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2013<br />LifeExp: 57.76200<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2013<br />LifeExp: 57.76200<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2014<br />LifeExp: 58.29600<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2015<br />LifeExp: 58.49000<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2016<br />LifeExp: 59.06600<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2017<br />LifeExp: 59.41100<br />country: Congo, the Democratic Republic of the<br />Continent: Africa","year: 2018<br />LifeExp: 59.94200<br />country: Congo, the Democratic Republic of the<br />Continent: Africa",null,"year: 2011<br />LifeExp: 55.52000<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2011<br />LifeExp: 55.52000<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2011<br />LifeExp: 55.52000<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2012<br />LifeExp: 56.15800<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2013<br />LifeExp: 56.74800<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2014<br />LifeExp: 57.20800<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2015<br />LifeExp: 57.76200<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2016<br />LifeExp: 58.06000<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2017<br />LifeExp: 58.48000<br />country: Côte d'Ivoire<br />Continent: Africa","year: 2018<br />LifeExp: 58.84900<br />country: Côte d'Ivoire<br />Continent: Africa",null,"year: 2011<br />LifeExp: 60.43300<br />country: Djibouti<br />Continent: Africa","year: 2012<br />LifeExp: 60.84800<br />country: Djibouti<br />Continent: Africa","year: 2013<br />LifeExp: 61.22100<br />country: Djibouti<br />Continent: Africa","year: 2014<br />LifeExp: 61.64100<br />country: Djibouti<br />Continent: Africa","year: 2015<br />LifeExp: 61.95700<br />country: Djibouti<br />Continent: Africa","year: 2016<br />LifeExp: 62.19100<br />country: Djibouti<br />Continent: Africa","year: 2017<br />LifeExp: 62.79700<br />country: Djibouti<br />Continent: Africa","year: 2018<br />LifeExp: 63.03800<br />country: Djibouti<br />Continent: Africa",null,"year: 2011<br />LifeExp: 69.88000<br />country: Egypt<br />Continent: Africa","year: 2012<br />LifeExp: 70.08500<br />country: Egypt<br />Continent: Africa","year: 2013<br />LifeExp: 70.05200<br />country: Egypt<br />Continent: Africa","year: 2014<br />LifeExp: 70.41500<br />country: Egypt<br />Continent: Africa","year: 2014<br />LifeExp: 70.41500<br />country: Egypt<br />Continent: Africa","year: 2014<br />LifeExp: 70.41500<br />country: Egypt<br />Continent: Africa","year: 2015<br />LifeExp: 70.48300<br />country: Egypt<br />Continent: Africa","year: 2016<br />LifeExp: 70.84400<br />country: Egypt<br />Continent: Africa","year: 2017<br />LifeExp: 71.30200<br />country: Egypt<br />Continent: Africa","year: 2018<br />LifeExp: 71.36700<br />country: Egypt<br />Continent: Africa",null,"year: 2011<br />LifeExp: 58.41200<br />country: Equatorial Guinea<br />Continent: Africa","year: 2012<br />LifeExp: 58.86500<br />country: Equatorial Guinea<br />Continent: Africa","year: 2013<br />LifeExp: 59.22400<br />country: Equatorial Guinea<br />Continent: Africa","year: 2014<br />LifeExp: 59.59500<br />country: Equatorial Guinea<br />Continent: Africa","year: 2015<br />LifeExp: 60.10300<br />country: Equatorial Guinea<br />Continent: Africa","year: 2016<br />LifeExp: 60.47900<br />country: Equatorial Guinea<br />Continent: Africa","year: 2017<br />LifeExp: 60.82100<br />country: Equatorial Guinea<br />Continent: Africa","year: 2018<br />LifeExp: 61.19100<br />country: Equatorial Guinea<br />Continent: Africa",null,"year: 2011<br />LifeExp: 64.40200<br />country: Eritrea<br />Continent: Africa","year: 2012<br />LifeExp: 64.83800<br />country: Eritrea<br />Continent: Africa","year: 2013<br />LifeExp: 65.06700<br />country: Eritrea<br />Continent: Africa","year: 2014<br />LifeExp: 65.60000<br />country: Eritrea<br />Continent: Africa","year: 2015<br />LifeExp: 66.03300<br />country: Eritrea<br />Continent: Africa","year: 2016<br />LifeExp: 66.28900<br />country: Eritrea<br />Continent: Africa","year: 2017<br />LifeExp: 66.57700<br />country: Eritrea<br />Continent: Africa","year: 2018<br />LifeExp: 67.06700<br />country: Eritrea<br />Continent: Africa",null,"year: 2011<br />LifeExp: 60.72100<br />country: Ethiopia<br />Continent: Africa","year: 2012<br />LifeExp: 61.54300<br />country: Ethiopia<br />Continent: Africa","year: 2013<br />LifeExp: 62.37300<br />country: Ethiopia<br />Continent: Africa","year: 2014<br />LifeExp: 62.90500<br />country: Ethiopia<br />Continent: Africa","year: 2015<br />LifeExp: 63.64900<br />country: Ethiopia<br />Continent: Africa","year: 2016<br />LifeExp: 64.39200<br />country: Ethiopia<br />Continent: Africa","year: 2016<br />LifeExp: 64.39200<br />country: Ethiopia<br />Continent: Africa","year: 2016<br />LifeExp: 64.39200<br />country: Ethiopia<br />Continent: Africa","year: 2017<br />LifeExp: 64.83800<br />country: Ethiopia<br />Continent: Africa","year: 2018<br />LifeExp: 65.41200<br />country: Ethiopia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 64.04500<br />country: Gabon<br />Continent: Africa","year: 2012<br />LifeExp: 64.58700<br />country: Gabon<br />Continent: Africa","year: 2012<br />LifeExp: 64.58700<br />country: Gabon<br />Continent: Africa","year: 2012<br />LifeExp: 64.58700<br />country: Gabon<br />Continent: Africa","year: 2013<br />LifeExp: 64.77600<br />country: Gabon<br />Continent: Africa","year: 2014<br />LifeExp: 64.97400<br />country: Gabon<br />Continent: Africa","year: 2015<br />LifeExp: 65.46000<br />country: Gabon<br />Continent: Africa","year: 2016<br />LifeExp: 65.80200<br />country: Gabon<br />Continent: Africa","year: 2017<br />LifeExp: 66.18900<br />country: Gabon<br />Continent: Africa","year: 2018<br />LifeExp: 66.30600<br />country: Gabon<br />Continent: Africa",null,"year: 2011<br />LifeExp: 61.52600<br />country: Gambia<br />Continent: Africa","year: 2012<br />LifeExp: 62.09600<br />country: Gambia<br />Continent: Africa","year: 2013<br />LifeExp: 62.11400<br />country: Gambia<br />Continent: Africa","year: 2014<br />LifeExp: 62.26900<br />country: Gambia<br />Continent: Africa","year: 2015<br />LifeExp: 62.49400<br />country: Gambia<br />Continent: Africa","year: 2016<br />LifeExp: 63.01300<br />country: Gambia<br />Continent: Africa","year: 2017<br />LifeExp: 62.99500<br />country: Gambia<br />Continent: Africa","year: 2018<br />LifeExp: 63.04000<br />country: Gambia<br />Continent: Africa","year: 2018<br />LifeExp: 63.04000<br />country: Gambia<br />Continent: Africa","year: 2018<br />LifeExp: 63.04000<br />country: Gambia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 61.65200<br />country: Ghana<br />Continent: Africa","year: 2012<br />LifeExp: 62.08100<br />country: Ghana<br />Continent: Africa","year: 2013<br />LifeExp: 62.42000<br />country: Ghana<br />Continent: Africa","year: 2014<br />LifeExp: 63.04500<br />country: Ghana<br />Continent: Africa","year: 2014<br />LifeExp: 63.04500<br />country: Ghana<br />Continent: Africa","year: 2014<br />LifeExp: 63.04500<br />country: Ghana<br />Continent: Africa","year: 2015<br />LifeExp: 63.17500<br />country: Ghana<br />Continent: Africa","year: 2016<br />LifeExp: 63.89000<br />country: Ghana<br />Continent: Africa","year: 2017<br />LifeExp: 64.01300<br />country: Ghana<br />Continent: Africa","year: 2018<br />LifeExp: 64.12200<br />country: Ghana<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.01900<br />country: Guinea<br />Continent: Africa","year: 2012<br />LifeExp: 57.40600<br />country: Guinea<br />Continent: Africa","year: 2013<br />LifeExp: 57.79100<br />country: Guinea<br />Continent: Africa","year: 2014<br />LifeExp: 57.88600<br />country: Guinea<br />Continent: Africa","year: 2015<br />LifeExp: 58.13400<br />country: Guinea<br />Continent: Africa","year: 2016<br />LifeExp: 58.76300<br />country: Guinea<br />Continent: Africa","year: 2017<br />LifeExp: 59.10900<br />country: Guinea<br />Continent: Africa","year: 2018<br />LifeExp: 59.34900<br />country: Guinea<br />Continent: Africa","year: 2018<br />LifeExp: 59.34900<br />country: Guinea<br />Continent: Africa","year: 2018<br />LifeExp: 59.34900<br />country: Guinea<br />Continent: Africa",null,"year: 2011<br />LifeExp: 56.96700<br />country: Guinea-Bissau<br />Continent: Africa","year: 2012<br />LifeExp: 57.69000<br />country: Guinea-Bissau<br />Continent: Africa","year: 2013<br />LifeExp: 58.23200<br />country: Guinea-Bissau<br />Continent: Africa","year: 2014<br />LifeExp: 58.61000<br />country: Guinea-Bissau<br />Continent: Africa","year: 2014<br />LifeExp: 58.61000<br />country: Guinea-Bissau<br />Continent: Africa","year: 2014<br />LifeExp: 58.61000<br />country: Guinea-Bissau<br />Continent: Africa","year: 2015<br />LifeExp: 59.12800<br />country: Guinea-Bissau<br />Continent: Africa","year: 2016<br />LifeExp: 59.67400<br />country: Guinea-Bissau<br />Continent: Africa","year: 2017<br />LifeExp: 60.06600<br />country: Guinea-Bissau<br />Continent: Africa","year: 2018<br />LifeExp: 60.50200<br />country: Guinea-Bissau<br />Continent: Africa",null,"year: 2011<br />LifeExp: 55.52000<br />country: Ivory Coast<br />Continent: Africa","year: 2011<br />LifeExp: 55.52000<br />country: Ivory Coast<br />Continent: Africa","year: 2011<br />LifeExp: 55.52000<br />country: Ivory Coast<br />Continent: Africa","year: 2012<br />LifeExp: 56.15800<br />country: Ivory Coast<br />Continent: Africa","year: 2013<br />LifeExp: 56.74800<br />country: Ivory Coast<br />Continent: Africa","year: 2014<br />LifeExp: 57.20800<br />country: Ivory Coast<br />Continent: Africa","year: 2015<br />LifeExp: 57.76200<br />country: Ivory Coast<br />Continent: Africa","year: 2016<br />LifeExp: 58.06000<br />country: Ivory Coast<br />Continent: Africa","year: 2017<br />LifeExp: 58.48000<br />country: Ivory Coast<br />Continent: Africa","year: 2018<br />LifeExp: 58.84900<br />country: Ivory Coast<br />Continent: Africa",null,"year: 2011<br />LifeExp: 61.04600<br />country: Kenya<br />Continent: Africa","year: 2012<br />LifeExp: 61.11500<br />country: Kenya<br />Continent: Africa","year: 2013<br />LifeExp: 61.38900<br />country: Kenya<br />Continent: Africa","year: 2014<br />LifeExp: 61.81600<br />country: Kenya<br />Continent: Africa","year: 2014<br />LifeExp: 61.81600<br />country: Kenya<br />Continent: Africa","year: 2014<br />LifeExp: 61.81600<br />country: Kenya<br />Continent: Africa","year: 2015<br />LifeExp: 61.89200<br />country: Kenya<br />Continent: Africa","year: 2016<br />LifeExp: 62.16300<br />country: Kenya<br />Continent: Africa","year: 2017<br />LifeExp: 62.48100<br />country: Kenya<br />Continent: Africa","year: 2018<br />LifeExp: 62.67600<br />country: Kenya<br />Continent: Africa",null,"year: 2011<br />LifeExp: 46.69200<br />country: Lesotho<br />Continent: Africa","year: 2012<br />LifeExp: 47.83500<br />country: Lesotho<br />Continent: Africa","year: 2013<br />LifeExp: 49.00200<br />country: Lesotho<br />Continent: Africa","year: 2014<br />LifeExp: 50.03300<br />country: Lesotho<br />Continent: Africa","year: 2014<br />LifeExp: 50.03300<br />country: Lesotho<br />Continent: Africa","year: 2014<br />LifeExp: 50.03300<br />country: Lesotho<br />Continent: Africa","year: 2015<br />LifeExp: 51.10100<br />country: Lesotho<br />Continent: Africa","year: 2016<br />LifeExp: 52.26400<br />country: Lesotho<br />Continent: Africa","year: 2017<br />LifeExp: 53.06400<br />country: Lesotho<br />Continent: Africa","year: 2018<br />LifeExp: 53.73300<br />country: Lesotho<br />Continent: Africa",null,"year: 2011<br />LifeExp: 59.62000<br />country: Liberia<br />Continent: Africa","year: 2012<br />LifeExp: 59.91300<br />country: Liberia<br />Continent: Africa","year: 2013<br />LifeExp: 59.94300<br />country: Liberia<br />Continent: Africa","year: 2013<br />LifeExp: 59.94300<br />country: Liberia<br />Continent: Africa","year: 2013<br />LifeExp: 59.94300<br />country: Liberia<br />Continent: Africa","year: 2014<br />LifeExp: 59.12100<br />country: Liberia<br />Continent: Africa","year: 2015<br />LifeExp: 59.14800<br />country: Liberia<br />Continent: Africa","year: 2016<br />LifeExp: 60.41600<br />country: Liberia<br />Continent: Africa","year: 2017<br />LifeExp: 60.55300<br />country: Liberia<br />Continent: Africa","year: 2018<br />LifeExp: 60.85300<br />country: Liberia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 70.07100<br />country: Libya<br />Continent: Africa","year: 2012<br />LifeExp: 72.24700<br />country: Libya<br />Continent: Africa","year: 2013<br />LifeExp: 72.34000<br />country: Libya<br />Continent: Africa","year: 2014<br />LifeExp: 71.51100<br />country: Libya<br />Continent: Africa","year: 2015<br />LifeExp: 71.69800<br />country: Libya<br />Continent: Africa","year: 2016<br />LifeExp: 71.75600<br />country: Libya<br />Continent: Africa","year: 2017<br />LifeExp: 72.48200<br />country: Libya<br />Continent: Africa","year: 2018<br />LifeExp: 72.79400<br />country: Libya<br />Continent: Africa",null,"year: 2011<br />LifeExp: 70.07100<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2012<br />LifeExp: 72.24700<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2013<br />LifeExp: 72.34000<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2014<br />LifeExp: 71.51100<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2015<br />LifeExp: 71.69800<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2016<br />LifeExp: 71.75600<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2017<br />LifeExp: 72.48200<br />country: Libyan Arab Jamahiriya<br />Continent: Africa","year: 2018<br />LifeExp: 72.79400<br />country: Libyan Arab Jamahiriya<br />Continent: Africa",null,"year: 2011<br />LifeExp: 63.49400<br />country: Madagascar<br />Continent: Africa","year: 2012<br />LifeExp: 63.54400<br />country: Madagascar<br />Continent: Africa","year: 2013<br />LifeExp: 63.96200<br />country: Madagascar<br />Continent: Africa","year: 2014<br />LifeExp: 64.25500<br />country: Madagascar<br />Continent: Africa","year: 2015<br />LifeExp: 64.33900<br />country: Madagascar<br />Continent: Africa","year: 2016<br />LifeExp: 64.99700<br />country: Madagascar<br />Continent: Africa","year: 2017<br />LifeExp: 65.09400<br />country: Madagascar<br />Continent: Africa","year: 2018<br />LifeExp: 65.27000<br />country: Madagascar<br />Continent: Africa","year: 2018<br />LifeExp: 65.27000<br />country: Madagascar<br />Continent: Africa","year: 2018<br />LifeExp: 65.27000<br />country: Madagascar<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.45500<br />country: Malawi<br />Continent: Africa","year: 2012<br />LifeExp: 58.67900<br />country: Malawi<br />Continent: Africa","year: 2013<br />LifeExp: 59.72900<br />country: Malawi<br />Continent: Africa","year: 2014<br />LifeExp: 60.89900<br />country: Malawi<br />Continent: Africa","year: 2015<br />LifeExp: 61.37800<br />country: Malawi<br />Continent: Africa","year: 2015<br />LifeExp: 61.37800<br />country: Malawi<br />Continent: Africa","year: 2015<br />LifeExp: 61.37800<br />country: Malawi<br />Continent: Africa","year: 2016<br />LifeExp: 62.20900<br />country: Malawi<br />Continent: Africa","year: 2017<br />LifeExp: 62.97700<br />country: Malawi<br />Continent: Africa","year: 2018<br />LifeExp: 63.27600<br />country: Malawi<br />Continent: Africa",null,"year: 2011<br />LifeExp: 56.75500<br />country: Mali<br />Continent: Africa","year: 2012<br />LifeExp: 57.07900<br />country: Mali<br />Continent: Africa","year: 2013<br />LifeExp: 57.35700<br />country: Mali<br />Continent: Africa","year: 2014<br />LifeExp: 57.90000<br />country: Mali<br />Continent: Africa","year: 2015<br />LifeExp: 58.36300<br />country: Mali<br />Continent: Africa","year: 2016<br />LifeExp: 58.73100<br />country: Mali<br />Continent: Africa","year: 2017<br />LifeExp: 59.13200<br />country: Mali<br />Continent: Africa","year: 2018<br />LifeExp: 59.39300<br />country: Mali<br />Continent: Africa","year: 2018<br />LifeExp: 59.39300<br />country: Mali<br />Continent: Africa","year: 2018<br />LifeExp: 59.39300<br />country: Mali<br />Continent: Africa",null,"year: 2011<br />LifeExp: 63.34600<br />country: Mauritania<br />Continent: Africa","year: 2012<br />LifeExp: 63.57800<br />country: Mauritania<br />Continent: Africa","year: 2013<br />LifeExp: 63.91100<br />country: Mauritania<br />Continent: Africa","year: 2014<br />LifeExp: 64.15500<br />country: Mauritania<br />Continent: Africa","year: 2015<br />LifeExp: 64.48500<br />country: Mauritania<br />Continent: Africa","year: 2015<br />LifeExp: 64.48500<br />country: Mauritania<br />Continent: Africa","year: 2015<br />LifeExp: 64.48500<br />country: Mauritania<br />Continent: Africa","year: 2016<br />LifeExp: 64.76800<br />country: Mauritania<br />Continent: Africa","year: 2017<br />LifeExp: 65.08300<br />country: Mauritania<br />Continent: Africa","year: 2018<br />LifeExp: 65.31000<br />country: Mauritania<br />Continent: Africa",null,"year: 2011<br />LifeExp: 73.26683<br />country: Mauritius<br />Continent: Africa","year: 2012<br />LifeExp: 73.86341<br />country: Mauritius<br />Continent: Africa","year: 2013<br />LifeExp: 74.01707<br />country: Mauritius<br />Continent: Africa","year: 2014<br />LifeExp: 74.19439<br />country: Mauritius<br />Continent: Africa","year: 2015<br />LifeExp: 74.35317<br />country: Mauritius<br />Continent: Africa","year: 2016<br />LifeExp: 74.39488<br />country: Mauritius<br />Continent: Africa","year: 2017<br />LifeExp: 74.51463<br />country: Mauritius<br />Continent: Africa","year: 2018<br />LifeExp: 74.41634<br />country: Mauritius<br />Continent: Africa",null,"year: 2011<br />LifeExp: 71.26900<br />country: Morocco<br />Continent: Africa","year: 2012<br />LifeExp: 71.67900<br />country: Morocco<br />Continent: Africa","year: 2013<br />LifeExp: 72.12200<br />country: Morocco<br />Continent: Africa","year: 2014<br />LifeExp: 72.53800<br />country: Morocco<br />Continent: Africa","year: 2015<br />LifeExp: 72.92000<br />country: Morocco<br />Continent: Africa","year: 2016<br />LifeExp: 73.28400<br />country: Morocco<br />Continent: Africa","year: 2017<br />LifeExp: 73.66000<br />country: Morocco<br />Continent: Africa","year: 2018<br />LifeExp: 73.98600<br />country: Morocco<br />Continent: Africa",null,"year: 2011<br />LifeExp: 54.86900<br />country: Mozambique<br />Continent: Africa","year: 2011<br />LifeExp: 54.86900<br />country: Mozambique<br />Continent: Africa","year: 2011<br />LifeExp: 54.86900<br />country: Mozambique<br />Continent: Africa","year: 2012<br />LifeExp: 55.63900<br />country: Mozambique<br />Continent: Africa","year: 2013<br />LifeExp: 56.49200<br />country: Mozambique<br />Continent: Africa","year: 2014<br />LifeExp: 57.27400<br />country: Mozambique<br />Continent: Africa","year: 2015<br />LifeExp: 58.15100<br />country: Mozambique<br />Continent: Africa","year: 2016<br />LifeExp: 59.03800<br />country: Mozambique<br />Continent: Africa","year: 2017<br />LifeExp: 59.77100<br />country: Mozambique<br />Continent: Africa","year: 2018<br />LifeExp: 60.52600<br />country: Mozambique<br />Continent: Africa",null,"year: 2011<br />LifeExp: 58.99400<br />country: Niger<br />Continent: Africa","year: 2012<br />LifeExp: 59.65000<br />country: Niger<br />Continent: Africa","year: 2012<br />LifeExp: 59.65000<br />country: Niger<br />Continent: Africa","year: 2012<br />LifeExp: 59.65000<br />country: Niger<br />Continent: Africa","year: 2013<br />LifeExp: 60.23900<br />country: Niger<br />Continent: Africa","year: 2014<br />LifeExp: 60.78600<br />country: Niger<br />Continent: Africa","year: 2015<br />LifeExp: 61.08300<br />country: Niger<br />Continent: Africa","year: 2016<br />LifeExp: 61.62900<br />country: Niger<br />Continent: Africa","year: 2017<br />LifeExp: 62.16000<br />country: Niger<br />Continent: Africa","year: 2018<br />LifeExp: 62.45400<br />country: Niger<br />Continent: Africa",null,"year: 2011<br />LifeExp: 51.35700<br />country: Nigeria<br />Continent: Africa","year: 2012<br />LifeExp: 51.49700<br />country: Nigeria<br />Continent: Africa","year: 2013<br />LifeExp: 51.70700<br />country: Nigeria<br />Continent: Africa","year: 2014<br />LifeExp: 51.79100<br />country: Nigeria<br />Continent: Africa","year: 2015<br />LifeExp: 51.84100<br />country: Nigeria<br />Continent: Africa","year: 2016<br />LifeExp: 52.04300<br />country: Nigeria<br />Continent: Africa","year: 2017<br />LifeExp: 52.30500<br />country: Nigeria<br />Continent: Africa","year: 2018<br />LifeExp: 52.55400<br />country: Nigeria<br />Continent: Africa","year: 2018<br />LifeExp: 52.55400<br />country: Nigeria<br />Continent: Africa","year: 2018<br />LifeExp: 52.55400<br />country: Nigeria<br />Continent: Africa",null,"year: 2011<br />LifeExp: 63.26100<br />country: Rwanda<br />Continent: Africa","year: 2012<br />LifeExp: 64.00900<br />country: Rwanda<br />Continent: Africa","year: 2013<br />LifeExp: 64.42600<br />country: Rwanda<br />Continent: Africa","year: 2014<br />LifeExp: 64.94000<br />country: Rwanda<br />Continent: Africa","year: 2014<br />LifeExp: 64.94000<br />country: Rwanda<br />Continent: Africa","year: 2014<br />LifeExp: 64.94000<br />country: Rwanda<br />Continent: Africa","year: 2015<br />LifeExp: 65.29800<br />country: Rwanda<br />Continent: Africa","year: 2016<br />LifeExp: 65.73700<br />country: Rwanda<br />Continent: Africa","year: 2017<br />LifeExp: 65.94100<br />country: Rwanda<br />Continent: Africa","year: 2018<br />LifeExp: 66.25100<br />country: Rwanda<br />Continent: Africa",null,"year: 2011<br />LifeExp: 64.90200<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2012<br />LifeExp: 65.74600<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2013<br />LifeExp: 66.32800<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2014<br />LifeExp: 66.84500<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2014<br />LifeExp: 66.84500<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2014<br />LifeExp: 66.84500<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2015<br />LifeExp: 67.24900<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2016<br />LifeExp: 67.49200<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2017<br />LifeExp: 68.26700<br />country: Sao Tome and Principe<br />Continent: Africa","year: 2018<br />LifeExp: 68.35500<br />country: Sao Tome and Principe<br />Continent: Africa",null,"year: 2011<br />LifeExp: 65.26200<br />country: Senegal<br />Continent: Africa","year: 2012<br />LifeExp: 65.45700<br />country: Senegal<br />Continent: Africa","year: 2013<br />LifeExp: 66.07200<br />country: Senegal<br />Continent: Africa","year: 2014<br />LifeExp: 66.45200<br />country: Senegal<br />Continent: Africa","year: 2015<br />LifeExp: 66.87900<br />country: Senegal<br />Continent: Africa","year: 2016<br />LifeExp: 67.49700<br />country: Senegal<br />Continent: Africa","year: 2017<br />LifeExp: 67.75000<br />country: Senegal<br />Continent: Africa","year: 2017<br />LifeExp: 67.75000<br />country: Senegal<br />Continent: Africa","year: 2017<br />LifeExp: 67.75000<br />country: Senegal<br />Continent: Africa","year: 2018<br />LifeExp: 68.09700<br />country: Senegal<br />Continent: Africa",null,"year: 2011<br />LifeExp: 72.72439<br />country: Seychelles<br />Continent: Africa","year: 2012<br />LifeExp: 74.27561<br />country: Seychelles<br />Continent: Africa","year: 2013<br />LifeExp: 73.11951<br />country: Seychelles<br />Continent: Africa","year: 2014<br />LifeExp: 73.22927<br />country: Seychelles<br />Continent: Africa","year: 2015<br />LifeExp: 74.29512<br />country: Seychelles<br />Continent: Africa","year: 2016<br />LifeExp: 74.30976<br />country: Seychelles<br />Continent: Africa","year: 2017<br />LifeExp: 74.30000<br />country: Seychelles<br />Continent: Africa","year: 2018<br />LifeExp: 72.84146<br />country: Seychelles<br />Continent: Africa",null,"year: 2011<br />LifeExp: 54.62000<br />country: Sierra Leone<br />Continent: Africa","year: 2012<br />LifeExp: 55.45100<br />country: Sierra Leone<br />Continent: Africa","year: 2013<br />LifeExp: 56.31300<br />country: Sierra Leone<br />Continent: Africa","year: 2014<br />LifeExp: 56.39300<br />country: Sierra Leone<br />Continent: Africa","year: 2015<br />LifeExp: 57.18900<br />country: Sierra Leone<br />Continent: Africa","year: 2016<br />LifeExp: 58.40400<br />country: Sierra Leone<br />Continent: Africa","year: 2017<br />LifeExp: 58.65200<br />country: Sierra Leone<br />Continent: Africa","year: 2017<br />LifeExp: 58.65200<br />country: Sierra Leone<br />Continent: Africa","year: 2017<br />LifeExp: 58.65200<br />country: Sierra Leone<br />Continent: Africa","year: 2018<br />LifeExp: 59.79600<br />country: Sierra Leone<br />Continent: Africa",null,"year: 2011<br />LifeExp: 51.30400<br />country: Somalia<br />Continent: Africa","year: 2012<br />LifeExp: 53.16100<br />country: Somalia<br />Continent: Africa","year: 2013<br />LifeExp: 53.84300<br />country: Somalia<br />Continent: Africa","year: 2014<br />LifeExp: 54.27700<br />country: Somalia<br />Continent: Africa","year: 2015<br />LifeExp: 54.85700<br />country: Somalia<br />Continent: Africa","year: 2016<br />LifeExp: 55.04400<br />country: Somalia<br />Continent: Africa","year: 2017<br />LifeExp: 55.65400<br />country: Somalia<br />Continent: Africa","year: 2018<br />LifeExp: 56.37500<br />country: Somalia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 60.65100<br />country: South Africa<br />Continent: Africa","year: 2012<br />LifeExp: 61.84600<br />country: South Africa<br />Continent: Africa","year: 2013<br />LifeExp: 62.53300<br />country: South Africa<br />Continent: Africa","year: 2014<br />LifeExp: 63.38000<br />country: South Africa<br />Continent: Africa","year: 2015<br />LifeExp: 63.95000<br />country: South Africa<br />Continent: Africa","year: 2016<br />LifeExp: 64.74700<br />country: South Africa<br />Continent: Africa","year: 2016<br />LifeExp: 64.74700<br />country: South Africa<br />Continent: Africa","year: 2016<br />LifeExp: 64.74700<br />country: South Africa<br />Continent: Africa","year: 2017<br />LifeExp: 65.40200<br />country: South Africa<br />Continent: Africa","year: 2018<br />LifeExp: 65.67400<br />country: South Africa<br />Continent: Africa",null,"year: 2011<br />LifeExp: 54.94000<br />country: South Sudan<br />Continent: Africa","year: 2012<br />LifeExp: 55.86500<br />country: South Sudan<br />Continent: Africa","year: 2013<br />LifeExp: 55.75100<br />country: South Sudan<br />Continent: Africa","year: 2014<br />LifeExp: 54.97300<br />country: South Sudan<br />Continent: Africa","year: 2015<br />LifeExp: 55.56600<br />country: South Sudan<br />Continent: Africa","year: 2016<br />LifeExp: 55.54400<br />country: South Sudan<br />Continent: Africa","year: 2017<br />LifeExp: 55.30900<br />country: South Sudan<br />Continent: Africa","year: 2018<br />LifeExp: 55.95000<br />country: South Sudan<br />Continent: Africa",null,"year: 2011<br />LifeExp: 63.24600<br />country: Sudan<br />Continent: Africa","year: 2012<br />LifeExp: 63.79200<br />country: Sudan<br />Continent: Africa","year: 2013<br />LifeExp: 63.67800<br />country: Sudan<br />Continent: Africa","year: 2014<br />LifeExp: 64.26900<br />country: Sudan<br />Continent: Africa","year: 2015<br />LifeExp: 64.65900<br />country: Sudan<br />Continent: Africa","year: 2016<br />LifeExp: 64.78000<br />country: Sudan<br />Continent: Africa","year: 2017<br />LifeExp: 65.44500<br />country: Sudan<br />Continent: Africa","year: 2018<br />LifeExp: 65.68100<br />country: Sudan<br />Continent: Africa",null,"year: 2011<br />LifeExp: 48.19500<br />country: Swaziland<br />Continent: Africa","year: 2012<br />LifeExp: 49.83500<br />country: Swaziland<br />Continent: Africa","year: 2013<br />LifeExp: 51.48600<br />country: Swaziland<br />Continent: Africa","year: 2014<br />LifeExp: 53.05000<br />country: Swaziland<br />Continent: Africa","year: 2014<br />LifeExp: 53.05000<br />country: Swaziland<br />Continent: Africa","year: 2014<br />LifeExp: 53.05000<br />country: Swaziland<br />Continent: Africa","year: 2015<br />LifeExp: 55.01900<br />country: Swaziland<br />Continent: Africa","year: 2016<br />LifeExp: 56.65900<br />country: Swaziland<br />Continent: Africa","year: 2017<br />LifeExp: 57.89500<br />country: Swaziland<br />Continent: Africa","year: 2018<br />LifeExp: 59.41100<br />country: Swaziland<br />Continent: Africa",null,"year: 2011<br />LifeExp: 75.46000<br />country: Tunisia<br />Continent: Africa","year: 2012<br />LifeExp: 75.55000<br />country: Tunisia<br />Continent: Africa","year: 2013<br />LifeExp: 75.65000<br />country: Tunisia<br />Continent: Africa","year: 2014<br />LifeExp: 75.65000<br />country: Tunisia<br />Continent: Africa","year: 2015<br />LifeExp: 75.69200<br />country: Tunisia<br />Continent: Africa","year: 2016<br />LifeExp: 75.78600<br />country: Tunisia<br />Continent: Africa","year: 2017<br />LifeExp: 75.84500<br />country: Tunisia<br />Continent: Africa","year: 2018<br />LifeExp: 75.95000<br />country: Tunisia<br />Continent: Africa","year: 2018<br />LifeExp: 75.95000<br />country: Tunisia<br />Continent: Africa","year: 2018<br />LifeExp: 75.95000<br />country: Tunisia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.96500<br />country: Uganda<br />Continent: Africa","year: 2012<br />LifeExp: 58.81700<br />country: Uganda<br />Continent: Africa","year: 2013<br />LifeExp: 59.76300<br />country: Uganda<br />Continent: Africa","year: 2014<br />LifeExp: 60.40800<br />country: Uganda<br />Continent: Africa","year: 2015<br />LifeExp: 61.08600<br />country: Uganda<br />Continent: Africa","year: 2016<br />LifeExp: 61.64800<br />country: Uganda<br />Continent: Africa","year: 2016<br />LifeExp: 61.64800<br />country: Uganda<br />Continent: Africa","year: 2016<br />LifeExp: 61.64800<br />country: Uganda<br />Continent: Africa","year: 2017<br />LifeExp: 62.11500<br />country: Uganda<br />Continent: Africa","year: 2018<br />LifeExp: 62.71400<br />country: Uganda<br />Continent: Africa",null,"year: 2011<br />LifeExp: 57.77100<br />country: Zambia<br />Continent: Africa","year: 2012<br />LifeExp: 58.86700<br />country: Zambia<br />Continent: Africa","year: 2013<br />LifeExp: 59.87800<br />country: Zambia<br />Continent: Africa","year: 2014<br />LifeExp: 60.69900<br />country: Zambia<br />Continent: Africa","year: 2015<br />LifeExp: 61.20800<br />country: Zambia<br />Continent: Africa","year: 2016<br />LifeExp: 61.79400<br />country: Zambia<br />Continent: Africa","year: 2017<br />LifeExp: 62.12000<br />country: Zambia<br />Continent: Africa","year: 2018<br />LifeExp: 62.34200<br />country: Zambia<br />Continent: Africa","year: 2018<br />LifeExp: 62.34200<br />country: Zambia<br />Continent: Africa","year: 2018<br />LifeExp: 62.34200<br />country: Zambia<br />Continent: Africa",null,"year: 2011<br />LifeExp: 53.34700<br />country: Zimbabwe<br />Continent: Africa","year: 2012<br />LifeExp: 55.62600<br />country: Zimbabwe<br />Continent: Africa","year: 2013<br />LifeExp: 57.45800<br />country: Zimbabwe<br />Continent: Africa","year: 2014<br />LifeExp: 58.84600<br />country: Zimbabwe<br />Continent: Africa","year: 2015<br />LifeExp: 59.59100<br />country: Zimbabwe<br />Continent: Africa","year: 2015<br />LifeExp: 59.59100<br />country: Zimbabwe<br />Continent: Africa","year: 2015<br />LifeExp: 59.59100<br />country: Zimbabwe<br />Continent: Africa","year: 2016<br />LifeExp: 60.30600<br />country: Zimbabwe<br />Continent: Africa","year: 2017<br />LifeExp: 60.70900<br />country: Zimbabwe<br />Continent: Africa","year: 2018<br />LifeExp: 61.41400<br />country: Zimbabwe<br />Continent: Africa"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283104,"r":7.3059360730593621,"b":40.182648401826491,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2010.6500000000001,2018.3499999999999],"tickmode":"array","ticktext":["2012","2014","2016","2018"],"tickvals":[2012,2014,2016,2018],"categoryorder":"array","categoryarray":["2012","2014","2016","2018"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[45.196950000000001,78.08805000000001],"tickmode":"array","ticktext":["50","60","70"],"tickvals":[50,60,70],"categoryorder":"array","categoryarray":["50","60","70"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"LifeExp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Continent","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"54a50cfcf3d":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"54a50cfcf3d","visdat":{"54a50cfcf3d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>In the heart of Africa, where vibrant cultures and breathtaking landscapes define the continent’s essence, a somber reality casts its shadow: the challenge of <strong>low life expectancy</strong>. Beyond the surface of picturesque savannas and bustling cities lies a narrative of struggle and resilience. Across the vast expanse of this diverse land, factors such as inadequate healthcare, insufficient access to clean water and sanitation, and widespread poverty intertwine to shape the harsh reality faced by many. Generations endure the burden of deprivation, their dreams often eclipsed by the harsh realities of daily life. Yet, amidst these challenges, there exists a profound spirit of resilience and community. Families come together, drawing strength from their bonds, and communities unite in their quest for a better future. The struggle for improved life expectancy in Africa is not merely a statistic but a story of perseverance and hope, where every triumph over adversity serves as a beacon of resilience in the face of deprivation’s grip.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Amidst the intricate tapestry of Africa’s challenges, the thread of economic disparity weaves a profound narrative. The continent’s Gross Domestic Product (GDP) serves as both a measure and a manifestation of its economic vitality. Inextricably linked to the fabric of life, GDP exerts a direct influence on the continent’s struggle for improved life expectancy. Where economic prosperity flourishes, access to healthcare, education, and infrastructure often follows suit, bolstering life expectancy rates. Conversely, regions plagued by economic stagnation find themselves ensnared in a cycle of deprivation, where basic needs remain unmet and healthcare systems struggle to thrive. Thus, the story of <strong>GDP</strong> in Africa is not merely an economic tale but a narrative deeply intertwined with the pursuit of longevity and well-being, where each fluctuation in GDP marks a pivotal chapter in the quest for a healthier and more prosperous future.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>As the sun sets over the vast African landscape, casting hues of orange and gold across the horizon, a tale of resilience unfolds amidst the challenges faced by its inhabitants. Beyond the beauty lies the sobering reality of children grappling with multiple forms of deprivation. Across the continent, a myriad of factors, from inadequate access to education and healthcare to the scarcity of clean water and nutritious food, converge to shape the lived experiences of the youngest members of society. Yet, amid these adversities, a glimmer of hope emerges—a collective determination to address the plight of these vulnerable children. With eyes fixed on the future, communities unite in their efforts to combat deprivation and pave the way for a brighter tomorrow. A recent bar chart, illustrating the percentage of children suffering from two forms of deprivation across different continents, serves as a poignant reminder of the challenges yet to be overcome. As the data unfolds, revealing disparities and commonalities alike, it becomes evident that the journey towards securing a better future for Africa’s children is one that transcends borders and demands collective action.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>##Conclusion In conclusion, the intricate interplay between Gross Domestic Product (GDP), life expectancy, and forms of deprivation paints a vivid portrait of the challenges and opportunities faced by societies across the globe. As GDP serves as a barometer of economic prosperity, its fluctuations directly influence access to vital resources such as healthcare, education, and infrastructure. In turn, these factors significantly impact life expectancy, with higher GDP often correlating with improved health outcomes and longer lifespans. However, the story does not end there. While economic growth can alleviate some forms of deprivation, it is not a panacea. Persistent inequalities, inadequate social safety nets, and systemic barriers continue to hinder progress, particularly in regions grappling with lower GDP and higher levels of deprivation. Therefore, addressing the root causes of deprivation requires a multifaceted approach—one that prioritizes equitable economic development, invests in social welfare programs, and fosters inclusive governance structures. By recognizing the intricate connections between GDP, life expectancy, and forms of deprivation, societies can chart a course towards a more equitable and sustainable future for all.</p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

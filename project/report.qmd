@@ -1,0 +1,96 @@
+---
+title: "Connecting the Dots"
+subtitle: "Child Deprivation, Life Expectancy, and GDP Trends"
+author: Ryan Hensey
+date: 2024-04-07
+format: html
+html: 
+theme: sandstone
+backgroundcolor: lightblue 
+toc: true
+execute: 
+  echo: false
+  warning: false
+  message: false 
+---
+
+##Introduction 
+The Gross Domestic Product (GDP) of a country serves as a fundamental measure of its economic health, reflecting the overall value of goods and services produced within its borders. However, behind the numbers lies a profound influence on the well-being of its populace, particularly its most vulnerable members: children. The level of GDP directly affects the extent of deprivation experienced by children, encompassing factors such as inadequate nutrition, limited access to education, substandard living conditions, and a lack of healthcare. These forms of deprivation, when endured simultaneously, can exert a profound impact on life expectancy at birth.
+
+```{r setup}
+#| message: false
+#| warning: false
+#| results: 'hide'
+#| include: false
+
+#libraries 
+library(tidyverse)
+library(plotly)
+
+#data 
+unicef_metadata <- read.csv("unicef_metadata.csv")
+unicef_indicator_1 <- read.csv("unicef_indicator_1.csv")
+unicef_metadata_filtered <- filter(unicef_metadata, year >= 2011 & year <= 2018)
+unicef_indicator_1_filtered <- filter(unicef_indicator_1, time_period >= 2011 & time_period <= 2018)
+
+
+#transformations 
+data_join <- full_join(unicef_metadata_filtered, unicef_indicator_1_filtered, by = c("country" = "country", "year" = "time_period"))
+```
+
+##Global Overview 
+
+```{r}
+#| fig-cap: "In the heart of Africa, where vibrant cultures and breathtaking landscapes define the continent's essence, a somber reality casts its shadow: the challenge of **low life expectancy**. Beyond the surface of picturesque savannas and bustling cities lies a narrative of struggle and resilience. Across the vast expanse of this diverse land, factors such as inadequate healthcare, insufficient access to clean water and sanitation, and widespread poverty intertwine to shape the harsh reality faced by many. Generations endure the burden of deprivation, their dreams often eclipsed by the harsh realities of daily life. Yet, amidst these challenges, there exists a profound spirit of resilience and community. Families come together, drawing strength from their bonds, and communities unite in their quest for a better future. The struggle for improved life expectancy in Africa is not merely a statistic but a story of perseverance and hope, where every triumph over adversity serves as a beacon of resilience in the face of deprivation's grip."
+
+timeseries_plot_1 <- data_join %>%
+  filter(Continent == "Africa") %>%
+  ggplot() +
+  aes(year, LifeExp, group = country, color = Continent) +
+  geom_line()
+ggplotly(timeseries_plot_1)
+
+```
+```{r}
+#| fig-cap: "Amidst the intricate tapestry of Africa's challenges, the thread of economic disparity weaves a profound narrative. The continent's Gross Domestic Product (GDP) serves as both a measure and a manifestation of its economic vitality. Inextricably linked to the fabric of life, GDP exerts a direct influence on the continent's struggle for improved life expectancy. Where economic prosperity flourishes, access to healthcare, education, and infrastructure often follows suit, bolstering life expectancy rates. Conversely, regions plagued by economic stagnation find themselves ensnared in a cycle of deprivation, where basic needs remain unmet and healthcare systems struggle to thrive. Thus, the story of **GDP** in Africa is not merely an economic tale but a narrative deeply intertwined with the pursuit of longevity and well-being, where each fluctuation in GDP marks a pivotal chapter in the quest for a healthier and more prosperous future."
+
+
+
+filtered_data <- data_join %>%
+  filter(year %in% 2011:2018)
+
+ggplot(filtered_data) +
+  aes(`GDP.per.capita`, LifeExp, colour = Continent, size = Population) +
+  geom_point(alpha = 0.2) +
+  facet_wrap(~ year, ncol = 4) +  # Set ncol to 4 for two rows of four plots each
+  scale_x_continuous(limits = c(0, 50000),
+                     breaks = c(20000, 40000),
+                     labels = scales::unit_format(unit = "K", scale = 0.001)) +
+  labs(x = "GDP per Capita", y = "Life Expectancy", title = "Relationship between GDP and Life Expectancy between 2011 and 2018") +
+  guides(colour = "none", size = "none")
+```
+```{r}
+#| fig-cap: "As the sun sets over the vast African landscape, casting hues of orange and gold across the horizon, a tale of resilience unfolds amidst the challenges faced by its inhabitants. Beyond the beauty lies the sobering reality of children grappling with multiple forms of deprivation. Across the continent, a myriad of factors, from inadequate access to education and healthcare to the scarcity of clean water and nutritious food, converge to shape the lived experiences of the youngest members of society. Yet, amid these adversities, a glimmer of hope emerges—a collective determination to address the plight of these vulnerable children. With eyes fixed on the future, communities unite in their efforts to combat deprivation and pave the way for a brighter tomorrow. A recent bar chart, illustrating the percentage of children suffering from two forms of deprivation across different continents, serves as a poignant reminder of the challenges yet to be overcome. As the data unfolds, revealing disparities and commonalities alike, it becomes evident that the journey towards securing a better future for Africa's children is one that transcends borders and demands collective action."
+
+cleaned_data_join <- data_join %>%
+  filter(!is.na(obs_value) & !is.na(Continent))
+
+continent_summary <- cleaned_data_join %>%
+  group_by(Continent) %>%
+  summarise(total_obs_value = mean(obs_value, na.rm = TRUE))
+
+
+continent_colors <- c("Asia" = "blue", "Europe" = "red", "Africa" = "green", "North America" = "purple", "South America" = "orange", "Oceania" = "yellow")
+
+
+ggplot(continent_summary, aes(x = Continent, y = total_obs_value, fill = Continent)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Continent", y = "% Children suffering 2 Deprivation", title = "Avg % of Children suffering 2 forms of Deprivation") +
+  scale_fill_manual(values = continent_colors) + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.y = element_text(size = 10)) 
+```
+##Conclusion
+In conclusion, the intricate interplay between Gross Domestic Product (GDP), life expectancy, and forms of deprivation paints a vivid portrait of the challenges and opportunities faced by societies across the globe. As GDP serves as a barometer of economic prosperity, its fluctuations directly influence access to vital resources such as healthcare, education, and infrastructure. In turn, these factors significantly impact life expectancy, with higher GDP often correlating with improved health outcomes and longer lifespans. However, the story does not end there. While economic growth can alleviate some forms of deprivation, it is not a panacea. Persistent inequalities, inadequate social safety nets, and systemic barriers continue to hinder progress, particularly in regions grappling with lower GDP and higher levels of deprivation. Therefore, addressing the root causes of deprivation requires a multifaceted approach—one that prioritizes equitable economic development, invests in social welfare programs, and fosters inclusive governance structures. By recognizing the intricate connections between GDP, life expectancy, and forms of deprivation, societies can chart a course towards a more equitable and sustainable future for all.
+
